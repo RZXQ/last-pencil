@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class LastPencil {
     private static final Scanner scanner = new Scanner(System.in);
+    private static final String PLAYER_ONE = "John";
+    private static final String PLAYER_TWO = "Jack";
     private static int pencils;
     private static int round;
     private static String currentPlayer;
-    private final String PLAYER_ONE = "John";
-    private final String PLAYER_TWO = "Jack";
 
     public static void main(String[] args) {
         initGame();
@@ -30,13 +30,13 @@ public class LastPencil {
     }
 
     private static void selectFirstPlayer() {
-        System.out.println("Who will be the first (John, Jack):");
+        System.out.println("Who will be the first (" + PLAYER_ONE + ", " + PLAYER_TWO + "):");
         currentPlayer = scanner.next();
         round = 1;
     }
 
     private static void switchPlayer() {
-        currentPlayer = "Jack".equals(currentPlayer) ? "John" : "Jack";
+        currentPlayer = PLAYER_TWO.equals(currentPlayer) ? PLAYER_ONE : PLAYER_TWO;
     }
 
     private static boolean isGameFinished() {
