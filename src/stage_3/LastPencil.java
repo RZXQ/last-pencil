@@ -19,7 +19,7 @@ public class LastPencil {
             if (round != 1) {
                 switchPlayer();
             }
-            executeRound(currentPlayer);
+            playRound(currentPlayer);
             round++;
         }
     }
@@ -43,7 +43,7 @@ public class LastPencil {
         return pencils == 0;
     }
 
-    public static void executeRound(String player) {
+    public static void playRound(String player) {
         System.out.println(player + "'s turn:");
         if (!removePencils(SCANNER.nextInt())) {
             System.out.println("wrong");
