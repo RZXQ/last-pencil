@@ -3,7 +3,7 @@ package stage_3;
 import java.util.Scanner;
 
 public class LastPencil {
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     private static final String PLAYER_ONE = "John";
     private static final String PLAYER_TWO = "Jack";
     private static int pencils;
@@ -11,7 +11,7 @@ public class LastPencil {
     private static String currentPlayer;
 
     public static void main(String[] args) {
-        initGame();
+        initializeGame();
         selectFirstPlayer();
         printPencils();
 
@@ -24,14 +24,14 @@ public class LastPencil {
         }
     }
 
-    private static void initGame() {
+    private static void initializeGame() {
         System.out.println("How many pencils would you like to use:");
-        pencils = scanner.nextInt();
+        pencils = SCANNER.nextInt();
     }
 
     private static void selectFirstPlayer() {
         System.out.println("Who will be the first (" + PLAYER_ONE + ", " + PLAYER_TWO + "):");
-        currentPlayer = scanner.next();
+        currentPlayer = SCANNER.next();
         round = 1;
     }
 
@@ -45,7 +45,7 @@ public class LastPencil {
 
     public static void executeRound(String player) {
         System.out.println(player + "'s turn:");
-        if (!removePencils(scanner.nextInt())) {
+        if (!removePencils(SCANNER.nextInt())) {
             System.out.println("wrong");
         }
         printPencils();
