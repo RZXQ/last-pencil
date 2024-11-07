@@ -1,9 +1,9 @@
 package stage_1;
 
-public class LastPencil {
+public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("||||||||");
+		System.out.println("|||");
 		System.out.println("Your turn!");
 	}
 
