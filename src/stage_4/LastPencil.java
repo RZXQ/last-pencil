@@ -38,12 +38,12 @@ public class LastPencil {
                 str = SCANNER.nextLine();
                 num = Integer.parseInt(str);
                 if (num <= 0) {
-                    throw new InitialValueException();
+                    throw new NonPositivePencilCountExcpetion("The number of pencils should be numeric");
                 }
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("The number of pencils should be numeric");
-            } catch (InitialValueException e) {
+            } catch (NonPositivePencilCountExcpetion e) {
                 System.out.println("The number of pencils should be positive");
             }
         }
