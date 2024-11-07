@@ -6,6 +6,11 @@ public class LastPencil {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final String PLAYER_ONE = "John";
     private static final String PLAYER_TWO = "Jack";
+    private static final String INVALID_PLAYER_MESSAGE = "Choose between " + PLAYER_ONE + " and " + PLAYER_TWO;
+    private static final String NON_NUMERIC_PENCILS_MESSAGE = "The number of pencils should be numeric";
+    private static final String NON_POSITIVE_PENCILS_MESSAGE = "The number of pencils should be positive";
+    private static final String TOO_MANY_PENCILS_TAKEN_MESSAGE = "Too many pencils were taken";
+    private static final String POSSIBLE_VALUES_MESSAGE = "Possible values: '1', '2', '3'";
     private static int pencils;
     private static int round;
     private static String currentPlayer;
@@ -38,13 +43,13 @@ public class LastPencil {
                 str = SCANNER.nextLine();
                 num = Integer.parseInt(str);
                 if (num <= 0) {
-                    throw new NonPositivePencilCountExcpetion("The number of pencils should be numeric");
+                    throw new NonPositivePencilCountExcpetion(NON_NUMERIC_PENCILS_MESSAGE);
                 }
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("The number of pencils should be numeric");
+                System.out.println(NON_NUMERIC_PENCILS_MESSAGE);
             } catch (NonPositivePencilCountExcpetion e) {
-                System.out.println("The number of pencils should be positive");
+                System.out.println(NON_POSITIVE_PENCILS_MESSAGE);
             }
         }
         return num;
@@ -66,7 +71,7 @@ public class LastPencil {
                 }
                 break;
             } catch (InvalidPlayerException e) {
-                System.out.println("Choose between " + PLAYER_ONE + " and " + PLAYER_TWO);
+                System.out.println(INVALID_PLAYER_MESSAGE);
             }
         }
         round = 1;
@@ -97,7 +102,7 @@ public class LastPencil {
                     num = Integer.parseInt(SCANNER.next());
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.println("Possible values: '1', '2', '3'");
+                    System.out.println(POSSIBLE_VALUES_MESSAGE);
                 }
             }
 
@@ -109,14 +114,14 @@ public class LastPencil {
                     try {
                         throw new TooManyPencilsTakenException();
                     } catch (TooManyPencilsTakenException e) {
-                        System.out.println("Too many pencils were taken");
+                        System.out.println(TOO_MANY_PENCILS_TAKEN_MESSAGE);
                     }
                 }
             } else {
                 try {
                     throw new PossibleValuesException();
                 } catch (PossibleValuesException e) {
-                    System.out.println("Possible values: '1', '2', '3'");
+                    System.out.println(POSSIBLE_VALUES_MESSAGE);
                 }
             }
 
