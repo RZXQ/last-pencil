@@ -57,7 +57,7 @@ public class Game {
 	}
 
 	private static boolean isValidNumericPencils(String str) {
-		return InputValidator.validateInitialNumericPencils(str);
+		return InputValidator.validateNumericPencils(str);
 	}
 
 	private static void setupPlayers() {
@@ -87,15 +87,31 @@ public class Game {
 			round++;
 			System.out.println(currentPlayer.getName() + " 's turn:");
 
-			int pencilsTaken = Integer.parseInt(SCANNER.nextLine());
-			takePencil(pencilsTaken);
+			takePencil();
 			displayPencils();
 		}
 	}
 
-	private static void takePencil(int pencilsTaken) {
-		if (pencilsTaken <= pencilTotal) {
-			pencilTotal -= pencilsTaken;
+	private static void takePencil() {
+		while (true) {
+			String str = SCANNER.nextLine();
+			if (InputValidator.validateNumericPencils(str)) {
+				if (InputValidator.validateTakenRange(str)) {
+					if (InputValidator.validatePencilsTaken(str, pencilTotal)) {
+						pencilTotal -= Integer.parseInt(str);
+						break;
+					}
+					else {
+						System.out.println("Too many pencils were taken");
+					}
+				}
+				else {
+					System.out.println("Possible values: '1', '2' or '3'");
+				}
+			}
+			else {
+				System.out.println("The number of pencils should be numeric");
+			}
 		}
 	}
 
