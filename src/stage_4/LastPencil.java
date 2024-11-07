@@ -20,18 +20,15 @@ public class LastPencil {
         selectFirstPlayer();
         printPencils();
 
-        while (true) {
-            if (isGameFinished()) {
-                getWinner();
-                break;
-            } else {
-                if (round != 1) {
-                    switchPlayer();
-                }
-                playRound(currentPlayer);
-                round++;
+        while (!isGameFinished()) {
+            if (round != 1) {
+                switchPlayer();
             }
+            playRound(currentPlayer);
+            round++;
         }
+
+        getWinner();
     }
 
     private static int getPencils() {
