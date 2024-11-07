@@ -31,6 +31,13 @@ public class Game {
 		setupFirstPlayer();
 		displayPencils();
 		executeGame();
+		checkWinner();
+	}
+
+	private static void checkWinner() {
+		if (pencilTotal == 0) {
+			System.out.println(currentPlayer == player1 ? player2.getName() : player1.getName() + " won!");
+		}
 	}
 
 	private static void setupPencils() {
@@ -85,7 +92,7 @@ public class Game {
 				flipPlayer();
 			}
 			round++;
-			System.out.println(currentPlayer.getName() + " 's turn:");
+			System.out.println(currentPlayer.getName() + " 's turn!");
 
 			takePencil();
 			displayPencils();
@@ -110,13 +117,15 @@ public class Game {
 				}
 			}
 			else {
-				System.out.println("The number of pencils should be numeric");
+				System.out.println("Possible values: '1', '2' or '3'");
 			}
 		}
 	}
 
 	private static void displayPencils() {
-		System.out.println("|".repeat(pencilTotal));
+		if (pencilTotal != 0) {
+			System.out.println("|".repeat(pencilTotal));
+		}
 	}
 
 	private static void flipPlayer() {
