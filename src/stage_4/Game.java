@@ -1,5 +1,6 @@
 package stage_4;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -8,15 +9,15 @@ public class Game {
 
 	private static final String CHOOSE_FIRST_PLAYER_PROMPT = "Who will be the first (John, Jack):";
 
-	private static final Scanner SCANNER = new Scanner(System.in);
-
 	private static final String NON_NUMERIC_PENCILS_ERROR = "The number of pencils should be numeric";
 
 	private static final String NON_POSITIVE_PENCILS_ERROR = "The number of pencils should be positive";
 
-	private static Player player1;
+	private static final Scanner SCANNER = new Scanner(System.in);
 
-	private static Player player2;
+	public static Player player1;
+
+	public static Player player2;
 
 	private static Player currentPlayer;
 
@@ -66,9 +67,16 @@ public class Game {
 
 	private static void setupFirstPlayer() {
 		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
-		String firstPlayer = SCANNER.nextLine();
-		currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
-		round = 1;
+		while (true) {
+			String firstPlayer = SCANNER.nextLine();
+			if (InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
+				currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
+				round = 1;
+				break;
+			}
+			System.out.println("The name of the player should be one of the following: " + player1.getName() + ", "
+					+ player2.getName());
+		}
 	}
 
 	private static void executeGame() {
