@@ -14,6 +14,12 @@ public class Game {
 
 	private static final String NON_POSITIVE_PENCILS_ERROR = "The number of pencils should be positive";
 
+	private static final String INVALID_PLAYER_NAME_ERROR = "Choose between 'John' and 'Jack'";
+
+	private static final String INVALID_TAKE_RANGE_ERROR = "Possible values: '1', '2' or '3'";
+
+	private static final String TOO_MANY_PENCILS_TAKEN_ERROR = "Too many pencils were taken";
+
 	private static final Scanner SCANNER = new Scanner(System.in);
 
 	public static Player player1;
@@ -29,22 +35,22 @@ public class Game {
 	private static int round;
 
 	public static void startGame() {
-		setupPencils();
+		setupInitialPencils();
 		setupPlayers();
 		setUpBot();
 		setupFirstPlayer();
 		displayPencils();
 		executeGame();
-		checkWinner();
+		announceWinner();
 	}
 
-	private static void checkWinner() {
+	private static void announceWinner() {
 		if (pencilTotal == 0) {
 			System.out.println((currentPlayer == player1 ? player2.getName() : player1.getName()) + " won!");
 		}
 	}
 
-	private static void setupPencils() {
+	private static void setupInitialPencils() {
 		System.out.println(INITIAL_PENCIL_PROMPT);
 		while (true) {
 			String str = SCANNER.nextLine();
@@ -85,10 +91,6 @@ public class Game {
 				round = 1;
 				break;
 			}
-			// System.out.println("The name of the player should be one of the following:
-			// " + player1.getName() + ", "
-			//
-			// + player2.getName());
 			System.out.println("Choose between '" + player1.getName() + "' and '" + player2.getName() + "'");
 		}
 	}
@@ -127,15 +129,15 @@ public class Game {
 						break;
 					}
 					else {
-						System.out.println("Too many pencils were taken");
+						System.out.println(TOO_MANY_PENCILS_TAKEN_ERROR);
 					}
 				}
 				else {
-					System.out.println("Possible values: '1', '2' or '3'");
+					System.out.println(INVALID_TAKE_RANGE_ERROR);
 				}
 			}
 			else {
-				System.out.println("Possible values: '1', '2' or '3'");
+				System.out.println(INVALID_TAKE_RANGE_ERROR);
 			}
 		}
 	}
