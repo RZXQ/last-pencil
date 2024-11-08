@@ -48,11 +48,11 @@ public class Game {
 		System.out.println(INITIAL_PENCIL_PROMPT);
 		while (true) {
 			String str = SCANNER.nextLine();
-			if (!isValidNumericPencils(str)) {
+			if (!InputValidator.validateNumericPencils(str)) {
 				System.out.println(NON_NUMERIC_PENCILS_ERROR);
 				continue;
 			}
-			if (!isValidPositivePencils(str)) {
+			if (!InputValidator.validateInitialPencilsQuantities(str)) {
 				System.out.println(NON_POSITIVE_PENCILS_ERROR);
 				continue;
 			}
@@ -152,14 +152,6 @@ public class Game {
 
 	private void switchPlayer() {
 		currentPlayer = currentPlayer == player1 ? player2 : player1;
-	}
-
-	private boolean isValidPositivePencils(String input) {
-		return InputValidator.validateInitialPencilsQuantities(input);
-	}
-
-	private boolean isValidNumericPencils(String input) {
-		return InputValidator.validateNumericPencils(input);
 	}
 
 	private void takePencil(String str) {
