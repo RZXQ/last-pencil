@@ -133,23 +133,21 @@ public class Game {
 	}
 
 	private static void botTakePencils() {
-		int pencilsTaken = 0;
-		if (round != 1) {
-			if (pencilTotal == 1) {
-				pencilsTaken = 1;
-			}
-			else if (pencilTotal % 4 == 0) {
-				pencilsTaken = 3;
-			}
-			else if ((pencilTotal + 1) % 4 == 0) {
-				pencilsTaken = 2;
-			}
-			else if ((pencilTotal + 2) % 4 == 0) {
-				pencilsTaken = 1;
-			}
-			else {
-				pencilsTaken = new Random().nextInt(3) + 1;
-			}
+		int pencilsTaken;
+		if (pencilTotal == 1) {
+			pencilsTaken = 1;
+		}
+		else if (pencilTotal % 4 == 0) {
+			pencilsTaken = 3;
+		}
+		else if ((pencilTotal + 1) % 4 == 0) {
+			pencilsTaken = 2;
+		}
+		else if ((pencilTotal + 2) % 4 == 0) {
+			pencilsTaken = 1;
+		}
+		else {
+			pencilsTaken = new Random().nextInt(3) + 1;
 		}
 		pencilTotal -= pencilsTaken;
 		System.out.println(pencilsTaken);
