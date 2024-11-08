@@ -35,18 +35,13 @@ public class Game {
 	private int round;
 
 	public void startGame() {
-		try {
-			setupInitialPencils();
-			setupPlayers();
-			setUpBot();
-			setupFirstPlayer();
-			displayPencils();
-			executeGame();
-			announceWinner();
-		}
-		finally {
-			SCANNER.close();
-		}
+		setupInitialPencils();
+		setupPlayers();
+		setUpBot();
+		setupFirstPlayer();
+		displayPencils();
+		executeGame();
+		announceWinner();
 	}
 
 	private void setupInitialPencils() {
@@ -122,7 +117,7 @@ public class Game {
 			if (!InputValidator.validatePencilsTaken(str, pencilTotal)) {
 				System.out.println(TOO_MANY_PENCILS_TAKEN_ERROR);
 			}
-			
+
 			takePencil(str);
 			break;
 		}
