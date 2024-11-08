@@ -87,7 +87,7 @@ public class Game {
 	private void executeGame() {
 		while (pencilTotal > 0) {
 			if (round != 1) {
-				switchPlayer();
+				switchCurrentPlayer();
 			}
 
 			round++;
@@ -125,6 +125,12 @@ public class Game {
 	}
 
 	private void botTakePencils() {
+		int pencilsTaken = determineBotMove();
+		pencilTotal -= pencilsTaken;
+		System.out.println(pencilsTaken);
+	}
+
+	private int determineBotMove() {
 		int pencilsTaken;
 		if (pencilTotal == 1) {
 			pencilsTaken = 1;
@@ -141,8 +147,7 @@ public class Game {
 		else {
 			pencilsTaken = new Random().nextInt(3) + 1;
 		}
-		pencilTotal -= pencilsTaken;
-		System.out.println(pencilsTaken);
+		return pencilsTaken;
 	}
 
 	private void displayPencils() {
@@ -151,7 +156,7 @@ public class Game {
 		}
 	}
 
-	private void switchPlayer() {
+	private void switchCurrentPlayer() {
 		currentPlayer = currentPlayer == player1 ? player2 : player1;
 	}
 
