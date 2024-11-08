@@ -35,13 +35,18 @@ public class Game {
 	private int round;
 
 	public void startGame() {
-		setupInitialPencils();
-		setupPlayers();
-		setUpBot();
-		setupFirstPlayer();
-		displayPencils();
-		executeGame();
-		announceWinner();
+		try {
+			setupInitialPencils();
+			setupPlayers();
+			setUpBot();
+			setupFirstPlayer();
+			displayPencils();
+			executeGame();
+			announceWinner();
+		}
+		finally {
+			SCANNER.close();
+		}
 	}
 
 	private void setupInitialPencils() {
