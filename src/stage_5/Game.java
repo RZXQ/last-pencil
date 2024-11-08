@@ -75,6 +75,19 @@ public class Game {
 		bot = player2;
 	}
 
+	private void setupFirstPlayer() {
+		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
+		while (true) {
+			String firstPlayer = SCANNER.nextLine();
+			if (InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
+				currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
+				round = 1;
+				break;
+			}
+			System.out.println(INVALID_PLAYER_NAME_ERROR);
+		}
+	}
+
 	private void executeGame() {
 		while (pencilTotal > 0) {
 			if (round != 1) {
@@ -98,23 +111,19 @@ public class Game {
 	private void humanTakePencils() {
 		while (true) {
 			String str = SCANNER.nextLine();
-			if (InputValidator.validateNumericPencils(str)) {
-				if (InputValidator.validateTakenRange(str)) {
-					if (InputValidator.validatePencilsTaken(str, pencilTotal)) {
-						takePencil(str);
-						break;
-					}
-					else {
-						System.out.println(TOO_MANY_PENCILS_TAKEN_ERROR);
-					}
-				}
-				else {
-					System.out.println(INVALID_TAKE_RANGE_ERROR);
-				}
-			}
-			else {
+			if (!InputValidator.validateNumericPencils(str)) {
 				System.out.println(INVALID_TAKE_RANGE_ERROR);
+				continue;
 			}
+			if (!InputValidator.validateTakenRange(str)) {
+				System.out.println(INVALID_TAKE_RANGE_ERROR);
+				continue;
+			}
+			if (!InputValidator.validatePencilsTaken(str, pencilTotal)) {
+				System.out.println(TOO_MANY_PENCILS_TAKEN_ERROR);
+			}
+			takePencil(str);
+			break;
 		}
 	}
 
@@ -159,19 +168,6 @@ public class Game {
 
 	private void takePencil(String str) {
 		pencilTotal -= Integer.parseInt(str);
-	}
-
-	private void setupFirstPlayer() {
-		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
-		while (true) {
-			String firstPlayer = SCANNER.nextLine();
-			if (InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
-				currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
-				round = 1;
-				break;
-			}
-			System.out.println(INVALID_PLAYER_NAME_ERROR);
-		}
 	}
 
 	private void announceWinner() {
