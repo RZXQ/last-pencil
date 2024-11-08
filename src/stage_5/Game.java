@@ -54,18 +54,16 @@ public class Game {
 		System.out.println(INITIAL_PENCIL_PROMPT);
 		while (true) {
 			String str = SCANNER.nextLine();
-			if (isValidNumericPencils(str)) {
-				if (isValidPositivePencils(str)) {
-					pencilTotal = Integer.parseInt(str);
-					break;
-				}
-				else {
-					System.out.println(NON_POSITIVE_PENCILS_ERROR);
-				}
-			}
-			else {
+			if (!isValidNumericPencils(str)) {
 				System.out.println(NON_NUMERIC_PENCILS_ERROR);
+				continue;
 			}
+			if (!isValidPositivePencils(str)) {
+				System.out.println(NON_POSITIVE_PENCILS_ERROR);
+				continue;
+			}
+			pencilTotal = Integer.parseInt(str);
+			break;
 		}
 	}
 
