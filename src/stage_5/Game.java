@@ -154,19 +154,21 @@ public class Game {
 	}
 
 	private static void displayPencils() {
-		System.out.println("|".repeat(pencilTotal));
+		if (pencilTotal > 0) {
+			System.out.println("|".repeat(pencilTotal));
+		}
 	}
 
 	private static void switchPlayer() {
 		currentPlayer = currentPlayer == player1 ? player2 : player1;
 	}
 
-	private static boolean isValidPositivePencils(String str) {
-		return InputValidator.validateInitialPencilsQuantities(str);
+	private static boolean isValidPositivePencils(String input) {
+		return InputValidator.validateInitialPencilsQuantities(input);
 	}
 
-	private static boolean isValidNumericPencils(String str) {
-		return InputValidator.validateNumericPencils(str);
+	private static boolean isValidNumericPencils(String input) {
+		return InputValidator.validateNumericPencils(input);
 	}
 
 	private static void takePencil(String str) {
