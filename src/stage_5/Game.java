@@ -69,17 +69,13 @@ public class Game {
 		}
 	}
 
-	private static boolean isValidPositivePencils(String str) {
-		return InputValidator.validateInitialPencilsQuantities(str);
-	}
-
-	private static boolean isValidNumericPencils(String str) {
-		return InputValidator.validateNumericPencils(str);
-	}
-
 	private static void setupPlayers() {
 		player1 = new Player("John");
 		player2 = new Player("Jack");
+	}
+
+	private static void setUpBot() {
+		bot = player2;
 	}
 
 	private static void setupFirstPlayer() {
@@ -91,23 +87,19 @@ public class Game {
 				round = 1;
 				break;
 			}
-			System.out.println("Choose between '" + player1.getName() + "' and '" + player2.getName() + "'");
+			System.out.println(INVALID_PLAYER_NAME_ERROR);
 		}
-	}
-
-	private static void setUpBot() {
-		bot = player2;
 	}
 
 	private static void executeGame() {
 		while (pencilTotal > 0) {
 			if (round != 1) {
-				flipPlayer();
+				switchPlayer();
 			}
 
 			round++;
 
-			System.out.println(currentPlayer.getName() + "'s turn!");
+			System.out.printf("%s's turn!%n", currentPlayer.getName());
 			if (currentPlayer == bot) {
 				botTakePencils();
 			}
@@ -158,16 +150,11 @@ public class Game {
 				pencilsTaken = 1;
 			}
 			else {
-				Random random = new Random();
-				pencilsTaken = random.nextInt(3) + 1;
+				pencilsTaken = new Random().nextInt(3) + 1;
 			}
 		}
 		pencilTotal -= pencilsTaken;
 		System.out.println(pencilsTaken);
-	}
-
-	private static void takePencil(String str) {
-		pencilTotal -= Integer.parseInt(str);
 	}
 
 	private static void displayPencils() {
@@ -176,10 +163,20 @@ public class Game {
 		}
 	}
 
-	private static void flipPlayer() {
-		if (round != 1) {
-			currentPlayer = currentPlayer == player1 ? player2 : player1;
-		}
+	private static void switchPlayer() {
+		currentPlayer = currentPlayer == player1 ? player2 : player1;
+	}
+
+	private static boolean isValidPositivePencils(String str) {
+		return InputValidator.validateInitialPencilsQuantities(str);
+	}
+
+	private static boolean isValidNumericPencils(String str) {
+		return InputValidator.validateNumericPencils(str);
+	}
+
+	private static void takePencil(String str) {
+		pencilTotal -= Integer.parseInt(str);
 	}
 
 }
