@@ -36,7 +36,7 @@ public class Game {
 
 	private static void checkWinner() {
 		if (pencilTotal == 0) {
-			System.out.println(currentPlayer == player1 ? player2.getName() : player1.getName() + " won!");
+			System.out.println((currentPlayer == player1 ? player2.getName() : player1.getName()) + " won!");
 		}
 	}
 
@@ -81,8 +81,11 @@ public class Game {
 				round = 1;
 				break;
 			}
-			System.out.println("The name of the player should be one of the following: " + player1.getName() + ", "
-					+ player2.getName());
+			// System.out.println("The name of the player should be one of the following:
+			// " + player1.getName() + ", "
+			//
+			// + player2.getName());
+			System.out.println("Choose between '" + player1.getName() + "' and '" + player2.getName() + "'");
 		}
 	}
 
