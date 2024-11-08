@@ -12,11 +12,11 @@ public class InputValidator {
 		return Integer.parseInt(input) > 0;
 	}
 
-	public static boolean validatePlayersName(String input, List<String> playersName) {
+	public static boolean isValidPlayerName(String input, List<String> playersName) {
 		return playersName.contains(input);
 	}
 
-	public static boolean validatePencilsTaken(String input, int pencilsTotal) {
+	public static boolean isWithinTotal(String input, int pencilsTotal) {
 		return Integer.parseInt(input) <= pencilsTotal;
 	}
 

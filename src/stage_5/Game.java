@@ -74,7 +74,7 @@ public class Game {
 		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
 		while (true) {
 			String firstPlayer = SCANNER.nextLine();
-			if (!InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
+			if (!InputValidator.isValidPlayerName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
 				System.out.println(INVALID_PLAYER_NAME_ERROR);
 				continue;
 			}
@@ -115,7 +115,7 @@ public class Game {
 				System.out.println(INVALID_TAKE_RANGE_ERROR);
 				continue;
 			}
-			if (!InputValidator.validatePencilsTaken(str, pencilTotal)) {
+			if (!InputValidator.isWithinTotal(str, pencilTotal)) {
 				System.out.println(TOO_MANY_PENCILS_TAKEN_ERROR);
 			}
 
