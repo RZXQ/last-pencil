@@ -74,12 +74,13 @@ public class Game {
 		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
 		while (true) {
 			String firstPlayer = SCANNER.nextLine();
-			if (InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
-				currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
-				round = 1;
-				break;
+			if (!InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
+				System.out.println(INVALID_PLAYER_NAME_ERROR);
+				continue;
 			}
-			System.out.println(INVALID_PLAYER_NAME_ERROR);
+			currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
+			round = 1;
+			break;
 		}
 	}
 
