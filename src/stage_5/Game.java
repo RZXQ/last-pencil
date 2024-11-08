@@ -22,11 +22,11 @@ public class Game {
 
 	private static final Scanner SCANNER = new Scanner(System.in);
 
-	public static Player player1;
+	private static Player player1;
 
-	public static Player player2;
+	private static Player player2;
 
-	public static Player bot;
+	private static Player bot;
 
 	private static Player currentPlayer;
 
