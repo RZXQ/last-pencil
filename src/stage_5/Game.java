@@ -117,6 +117,7 @@ public class Game {
 			}
 			if (!InputValidator.isWithinTotal(str, pencilTotal)) {
 				System.out.println(TOO_MANY_PENCILS_TAKEN_ERROR);
+				continue;
 			}
 
 			takePencil(str);
