@@ -154,9 +154,7 @@ public class Game {
 	}
 
 	private static void displayPencils() {
-		if (pencilTotal != 0) {
-			System.out.println("|".repeat(pencilTotal));
-		}
+		System.out.println("|".repeat(pencilTotal));
 	}
 
 	private static void switchPlayer() {
