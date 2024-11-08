@@ -22,19 +22,19 @@ public class Game {
 
 	private static final Scanner SCANNER = new Scanner(System.in);
 
-	private static Player player1;
+	private Player player1;
 
-	private static Player player2;
+	private Player player2;
 
-	private static Player bot;
+	private Player bot;
 
-	private static Player currentPlayer;
+	private Player currentPlayer;
 
-	private static int pencilTotal;
+	private int pencilTotal;
 
-	private static int round;
+	private int round;
 
-	public static void startGame() {
+	public void startGame() {
 		setupInitialPencils();
 		setupPlayers();
 		setUpBot();
@@ -44,13 +44,7 @@ public class Game {
 		announceWinner();
 	}
 
-	private static void announceWinner() {
-		if (pencilTotal == 0) {
-			System.out.println((currentPlayer == player1 ? player2.getName() : player1.getName()) + " won!");
-		}
-	}
-
-	private static void setupInitialPencils() {
+	private void setupInitialPencils() {
 		System.out.println(INITIAL_PENCIL_PROMPT);
 		while (true) {
 			String str = SCANNER.nextLine();
@@ -67,29 +61,16 @@ public class Game {
 		}
 	}
 
-	private static void setupPlayers() {
+	private void setupPlayers() {
 		player1 = new Player("John");
 		player2 = new Player("Jack");
 	}
 
-	private static void setUpBot() {
+	private void setUpBot() {
 		bot = player2;
 	}
 
-	private static void setupFirstPlayer() {
-		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
-		while (true) {
-			String firstPlayer = SCANNER.nextLine();
-			if (InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
-				currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
-				round = 1;
-				break;
-			}
-			System.out.println(INVALID_PLAYER_NAME_ERROR);
-		}
-	}
-
-	private static void executeGame() {
+	private void executeGame() {
 		while (pencilTotal > 0) {
 			if (round != 1) {
 				switchPlayer();
@@ -109,7 +90,7 @@ public class Game {
 		}
 	}
 
-	private static void humanTakePencils() {
+	private void humanTakePencils() {
 		while (true) {
 			String str = SCANNER.nextLine();
 			if (InputValidator.validateNumericPencils(str)) {
@@ -132,7 +113,7 @@ public class Game {
 		}
 	}
 
-	private static void botTakePencils() {
+	private void botTakePencils() {
 		int pencilsTaken;
 		if (pencilTotal == 1) {
 			pencilsTaken = 1;
@@ -153,26 +134,45 @@ public class Game {
 		System.out.println(pencilsTaken);
 	}
 
-	private static void displayPencils() {
+	private void displayPencils() {
 		if (pencilTotal > 0) {
 			System.out.println("|".repeat(pencilTotal));
 		}
 	}
 
-	private static void switchPlayer() {
+	private void switchPlayer() {
 		currentPlayer = currentPlayer == player1 ? player2 : player1;
 	}
 
-	private static boolean isValidPositivePencils(String input) {
+	private boolean isValidPositivePencils(String input) {
 		return InputValidator.validateInitialPencilsQuantities(input);
 	}
 
-	private static boolean isValidNumericPencils(String input) {
+	private boolean isValidNumericPencils(String input) {
 		return InputValidator.validateNumericPencils(input);
 	}
 
-	private static void takePencil(String str) {
+	private void takePencil(String str) {
 		pencilTotal -= Integer.parseInt(str);
+	}
+
+	private void setupFirstPlayer() {
+		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
+		while (true) {
+			String firstPlayer = SCANNER.nextLine();
+			if (InputValidator.validatePlayersName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
+				currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
+				round = 1;
+				break;
+			}
+			System.out.println(INVALID_PLAYER_NAME_ERROR);
+		}
+	}
+
+	private void announceWinner() {
+		if (pencilTotal == 0) {
+			System.out.println((currentPlayer == player1 ? player2.getName() : player1.getName()) + " won!");
+		}
 	}
 
 }
