@@ -74,11 +74,11 @@ public class Game {
 		System.out.println(CHOOSE_FIRST_PLAYER_PROMPT);
 		while (true) {
 			String firstPlayer = SCANNER.nextLine();
-			if (!InputValidator.isValidPlayerName(firstPlayer, Arrays.asList(player1.getName(), player2.getName()))) {
+			if (!InputValidator.isValidPlayerName(firstPlayer, Arrays.asList(player1.name(), player2.name()))) {
 				System.out.println(INVALID_PLAYER_NAME_ERROR);
 				continue;
 			}
-			currentPlayer = firstPlayer.equals(player1.getName()) ? player1 : player2;
+			currentPlayer = firstPlayer.equals(player1.name()) ? player1 : player2;
 			round = 1;
 			break;
 		}
@@ -92,7 +92,7 @@ public class Game {
 
 			round++;
 
-			System.out.printf("%s's turn!%n", currentPlayer.getName());
+			System.out.printf("%s's turn!%n", currentPlayer.name());
 			if (currentPlayer == bot) {
 				botTakePencils();
 			}
@@ -166,7 +166,7 @@ public class Game {
 
 	private void announceWinner() {
 		if (pencilTotal == 0) {
-			System.out.println((currentPlayer == player1 ? player2.getName() : player1.getName()) + " won!");
+			System.out.println((currentPlayer == player1 ? player2.name() : player1.name()) + " won!");
 		}
 	}
 
